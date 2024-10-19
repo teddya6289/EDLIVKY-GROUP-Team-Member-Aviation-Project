@@ -28,7 +28,7 @@ constraint Fk_Agency_ID foreign key (Agency_ID) references Booking_Agency(Agency
  ( Payment_ID varchar2 (10) primary key,
  Amount number (7) not null check(Amount > 0),
  Discount number (7,3) null,
- Amount_Payable as (Amount - (Amount*Discount)),
+ Amount_Payable as (Amount - (Amount*Discount),
  Booking_ID varchar2 (10) not null),
 constraint Fk_BookingID foreign key (Booking_ID) references Booking(Booking_ID);
  
@@ -53,7 +53,7 @@ constraint FK_PaymentID foreign key(Payment_ID)references Payments(Payment_ID);
   Departure_Time varchar2 (15) not null,	
   Arrival_Date	date not null,
   Arrival_Time varchar2 (15) not null),
-  constraint Fk_PaymentID2 foreign key(payment_ID) references payments(Payment_ID)
+  constraint Fk_PaymentID2 foreign key(payment_ID) references payments(Payment_ID),
   constraint Fk_BookingID2 foreign key(Booking_ID) references Booking(Booking_ID));
 
 
@@ -129,7 +129,7 @@ Cheff varchar2 (25) not null);
   Phone	varchar2 (15) not null unique,
   Email varchar2 (45) not null unique,
   Age varchar2 (20) not null,
-  constraint FK_Ticket foreign key (Ticket_No) references Ticket(Ticket_No)
+  constraint FK_Ticket foreign key (Ticket_No) references Ticket(Ticket_No),
   constraint Fk_FlightID Foreign key (Flight_ID) references Flight(Flight_ID));
 
 
@@ -147,12 +147,12 @@ Seat_No varchar2 (20) not null,
 Flight_Crew_Name varchar2 (20) not null,	
 SerVice_ID varchar2 (7) not null,
 Meal_ID number (7) not null,
-constraint FK_Meal foreign key (Meal_ID) references Meal(Meal_ID)
-constraint FK_Servicing foreign key (SerVice_ID)references Flight_Service(SerVice_ID)
-constraint FK_Flight_Crew foreign key (Flight_Crew_Name)references Crew(Flight_Crew_Name)
-constraint Fk_FlightID_Aircraft_Code foreign key (Flight_ID) references Aircraft_Procurement(Aircraft_Code)
-constraint Fk_TripID foreign key (Trip_ID) references Trip(Trip_ID)
-constraint fk_SeatNo foreign key (Seat_No) references Seat(Seat_No)
+constraint FK_Meal foreign key (Meal_ID) references Meal(Meal_ID),
+constraint FK_Servicing foreign key (SerVice_ID)references Flight_Service(SerVice_ID),
+constraint FK_Flight_Crew foreign key (Flight_Crew_Name)references Crew(Flight_Crew_Name),
+constraint Fk_FlightID_Aircraft_Code foreign key (Flight_ID) references Aircraft_Procurement(Aircraft_Code),
+constraint Fk_TripID foreign key (Trip_ID) references Trip(Trip_ID),
+constraint fk_SeatNo foreign key (Seat_No) references Seat(Seat_No),
 constraint PK_FlightNO primary key (Flight_No));
 
 
